@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button } from "@chakra-ui/button";
+import { Box, Heading } from "@chakra-ui/layout";
+import { useRef } from "react";
+import Header from "./components/Header";
+import SearchArea from "./components/HeroSearch/SearchArea";
+import HeroTeam from "./components/HeroTeam/HeroTeam";
+import { TeamContextProvider } from "./TeamContext/TeamContext";
 
 function App() {
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  const goToSearch = ()=>{
+    window.scroll({top: searchRef.current!.offsetTop, left: 0, behavior: 'smooth'});
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TeamContextProvider>
+      <Header/>
+      <Box maxW="80%" m="auto">
+        <Box height='100vh'>
+          <HeroTeam />
+          <Button variant='link' size='lg' fontSize='2xl' display='block' m='auto' mt={2} onClick={goToSearch}>Add heroes to your team</Button>
+        </Box>
+        <Heading textAlign="center">Hero app</Heading>
+        <SearchArea ref={searchRef}/>
+      </Box>
+    </TeamContextProvider>
   );
 }
 
