@@ -10,15 +10,16 @@ interface Props {
 
 const HeroList: React.FC<Props> = ({ heroes }) => {
   const [page, setPage] = useState(0);
+  const pageSize = 4;
 
   //resets page when list changes
   useEffect(() => {
     setPage(0);
   }, [heroes]);
 
-  const heroesPage = heroes.slice(page * 3, page * 3 + 3);
+  const heroesPage = heroes.slice(page * pageSize, page * pageSize + pageSize);
 
-  const hasNextPage = heroes.length > (page + 1) * 3;
+  const hasNextPage = heroes.length > (page + 1) * pageSize;
   const hasPrevPage = page > 0;
 
   const pageUp = () => {
@@ -33,7 +34,7 @@ const HeroList: React.FC<Props> = ({ heroes }) => {
       {heroesPage.map((hero) => (
         <HeroCard key={hero.id} hero={hero} />
       ))}
-      {heroes.length > 3 && (
+      {heroes.length > pageSize && (
         <Box>
           <IconButton
             onClick={pageDown}

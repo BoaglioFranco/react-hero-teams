@@ -9,7 +9,8 @@ const TeamContainer: React.FC<Props> = ({children}) => {
     <Flex
     margin='auto'
     justifyContent='space-around'
-    mt={4}>
+    mt={4}
+    height='55vh'>
         {children}
     </Flex>
         

@@ -1,14 +1,17 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Button, Flex, Heading } from '@chakra-ui/react';
+import React, { useContext } from 'react';
+import { AppContext } from '../Context/AppContext';
 
 interface Props {}
 
 const Header: React.FC<Props> = (props) => {
+    const appCtx = useContext(AppContext);
 
     return (
         <Box backgroundColor='#A6D6D6' p={2}>
-            <Flex maxW='1100px' m='auto'>
+            <Flex minW='300px' w='80%' m='auto' justifyContent='space-between'>
                 <Heading color='white' size='lg'>HERO APP</Heading>
+                <Button onClick={appCtx?.toggleDrawer}>Add heroes</Button>
             </Flex>
         </Box>
     );

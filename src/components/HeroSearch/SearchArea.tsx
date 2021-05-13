@@ -1,6 +1,5 @@
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchHero } from "../../api";
@@ -42,10 +41,6 @@ const SearchArea = React.forwardRef<HTMLDivElement>((props, ref) => {
     }
   }, [data]);
 
-  const goToTop = () => {
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
-  };
-
   let body;
   if (status === "error") {
     body = <Text size="3xl">Something went wrong</Text>;
@@ -71,7 +66,7 @@ const SearchArea = React.forwardRef<HTMLDivElement>((props, ref) => {
   // });
 
   return (
-    <Box m="auto" p={4} w="70%" ref={ref} h="85vh">
+    <Box>
       <Box mb={4}>
         <Input
           placeholder="Search Hero..."
@@ -81,16 +76,6 @@ const SearchArea = React.forwardRef<HTMLDivElement>((props, ref) => {
             setInput(e.target.value);
           }}
         />
-        <Button
-          variant="link"
-          size="lg"
-          display="block"
-          m="auto"
-          mt={2}
-          onClick={goToTop}
-        >
-          Back to top
-        </Button>
       </Box>
       {body}
     </Box>

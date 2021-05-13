@@ -5,6 +5,7 @@ import { Box } from "@chakra-ui/layout";
 import { Fade } from "@chakra-ui/react";
 import HeroName from "./HeroName";
 import CloseIcn from "./CloseIcn";
+import StatList from "./Stats/StatList";
 
 interface Props {
   hero: Hero;
@@ -21,8 +22,7 @@ const HeroBanner: React.FC<Props> = ({ hero, onClose }) => {
   return (
     <Box
       position="relative"
-      maxW="16%"
-      height="25rem"
+      width='16%'
       borderRadius="8px"
       overflow="hidden"
       onMouseEnter={toggleCloseBtn}
@@ -35,6 +35,7 @@ const HeroBanner: React.FC<Props> = ({ hero, onClose }) => {
         objectPosition="center"
         height="100%"
       />
+      <StatList stats={hero.powerstats} />
       <Fade in={showCloseBtn}>
         <CloseIcn onClick={onClose}/>
       </Fade>

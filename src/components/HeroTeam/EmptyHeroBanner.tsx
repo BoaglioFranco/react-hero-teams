@@ -7,7 +7,6 @@ const EmptyHeroBanner: React.FC<Props> = (props) => {
   return (
     <Flex
       w="16%"
-      h="25rem"
       backgroundColor="gray.200"
       border="2px dashed"
       borderColor="gray.300"

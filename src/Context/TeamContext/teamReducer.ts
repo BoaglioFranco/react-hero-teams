@@ -1,6 +1,6 @@
 import { createStandaloneToast } from "@chakra-ui/react";
 import produce from "immer";
-import { Hero } from "../models";
+import { Hero } from "../../models";
 import { HeroTeamArray } from "./TeamContext";
 
 //prettier-ignore
@@ -8,7 +8,6 @@ export type HeroTeamAction ={ type: "ADD" | "REMOVE"; hero: Hero; } | { type: "C
 
 //allows me to display global toasts outside react components
 const toast = createStandaloneToast();
-
 //prettier-ignore
 export const teamReducer = (state: HeroTeamArray, action: HeroTeamAction) => {
     const updatedState = produce(state, (draftState) => {

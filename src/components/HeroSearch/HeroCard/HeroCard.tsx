@@ -4,7 +4,7 @@ import { Hero } from "../../../models";
 import { Backdrop } from "../../Backdrop/Backdrop";
 import ImageOverlay from "../../Backdrop/ImageOverlay";
 import StatPanel from "../../StatPanel/StatPanel";
-import { TeamContext } from "../../../TeamContext/TeamContext";
+import { TeamContext } from "../../../Context/TeamContext/TeamContext";
 import CardButton from "./CardButton";
 import CardBadge from "./CardBadge";
 
