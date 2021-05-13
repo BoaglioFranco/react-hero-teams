@@ -4,13 +4,19 @@ import { Hero } from "../../models";
 import { HeroTeamArray } from "./TeamContext";
 
 //prettier-ignore
-export type HeroTeamAction ={ type: "ADD" | "REMOVE"; hero: Hero; } | { type: "CLEAR" };
+export type HeroTeamAction =
+{ type: "ADD" | "REMOVE"; hero: Hero; } 
+| { type: "CLEAR" } 
+| { type: 'SET', team: HeroTeamArray};
 
 //allows me to display global toasts outside react components
 const toast = createStandaloneToast();
 //prettier-ignore
 export const teamReducer = (state: HeroTeamArray, action: HeroTeamAction) => {
     const updatedState = produce(state, (draftState) => {
+      if(action.type === 'SET'){
+        return action.team;
+      }
       if (action.type === "CLEAR") {
         return [[null, null, null], [null, null, null]] as HeroTeamArray;
       }

@@ -1,4 +1,4 @@
-import React, { Dispatch, useReducer } from "react";
+import React, { Dispatch, useEffect, useReducer } from "react";
 import { Hero } from "../../models";
 import { HeroTeamAction, teamReducer } from "./teamReducer";
 
@@ -18,6 +18,22 @@ export const TeamContextProvider: React.FC<{}> = (props) => {
     [null, null, null],
     [null, null, null],
   ]);
+
+  //read from localstorage on mount
+  useEffect(() => {
+    let items: any = localStorage.getItem("REACT_HERO_APP-TEAM");
+    if (items) {
+      items = JSON.parse(items);
+      console.log("items", items);
+      dispatch({ type: "SET", team: items });
+    }
+  }, []);
+
+  //save to localstorage on update
+  useEffect(() => {
+    localStorage.setItem("REACT_HERO_APP-TEAM", JSON.stringify(heroTeam));
+  }, [heroTeam]);
+
   const ctx = {
     heroes: heroTeam as HeroTeamArray,
     dispatch,
