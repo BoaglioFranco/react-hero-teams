@@ -1,4 +1,5 @@
-import { Input } from "@chakra-ui/input";
+import { SearchIcon } from "@chakra-ui/icons";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
@@ -59,15 +60,13 @@ const SearchArea = React.forwardRef<HTMLDivElement>((props, ref) => {
     }
   }
 
-  // data?.data.results?.forEach((h) => { //FUCK
-  //   console.log("name", h.name);
-  //   console.log("height", h.appearance.height);
-  //   console.log("weight", h.appearance.weight);
-  // });
-
   return (
     <Box>
       <Box mb={4}>
+        <InputGroup>
+        <InputLeftElement>
+        <SearchIcon color='gray.500' fontSize='1.4em' alignSelf='flex-end' mb={1}/>
+        </InputLeftElement>
         <Input
           placeholder="Search Hero..."
           size="lg"
@@ -76,6 +75,7 @@ const SearchArea = React.forwardRef<HTMLDivElement>((props, ref) => {
             setInput(e.target.value);
           }}
         />
+        </InputGroup>
       </Box>
       {body}
     </Box>

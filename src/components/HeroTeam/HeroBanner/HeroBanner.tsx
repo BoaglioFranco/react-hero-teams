@@ -15,18 +15,24 @@ interface Props {
 const HeroBanner: React.FC<Props> = ({ hero, onClose }) => {
   const [showCloseBtn, setShowCloseBtn] = useState(false);
 
-  const toggleCloseBtn = () => {
-    setShowCloseBtn(!showCloseBtn);
+  const displayCloseBtn = () => {
+    setShowCloseBtn(true);
   };
+  const hideCloseBtn = () => {
+    setShowCloseBtn(false);
+  }
+  
 
   return (
     <Box
       position="relative"
-      width='16%'
       borderRadius="8px"
       overflow="hidden"
-      onMouseEnter={toggleCloseBtn}
-      onMouseLeave={toggleCloseBtn}
+      height='55vh'
+      maxW='80%'
+      minW='10rem'
+      onMouseEnter={displayCloseBtn}
+      onMouseLeave={hideCloseBtn}
     >
       <HeroName>{hero.name}</HeroName>
       <Image

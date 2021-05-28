@@ -1,13 +1,14 @@
 import { Box, Grid, GridItem, Text } from "@chakra-ui/layout";
-import { valueScaleCorrection } from "framer-motion/types/render/dom/projection/scale-correction";
 import React from "react";
-import { Hero, Powerstats } from "../../models";
+import { Hero } from "../../models";
 import TeamDescription from "./TeamDescription";
 
 interface Props {
   //   stats: Record<keyof Powerstats, number>;
   team: (Hero | null)[];
 }
+
+
 
 const LBS_TO_KG = 0.453592;
 
@@ -73,18 +74,18 @@ const StatGrid: React.FC<Props> = ({ team }) => {
     <>
       {maxStat > 0 && (
         <>
-          <Grid mt={4} templateColumns="repeat(4, 1fr)">
-            <GridItem colSpan={4} rowSpan={1}>
+          <Grid mt={4} gridTemplateColumns={['max-content', 'max-content max-content', 'repeat(auto-fit, minmax(23%, max-content))']} gap='1rem' justifyContent='center'>
+            <GridItem gridRow={1} gridColumn='1 / -1'>
               <TeamDescription highestStat={bestStat} />
             </GridItem>
             {(Object.keys(stats) as Array<keyof typeof stats>).map((key) => {
               return (
-                <Box key={key}>
+                <GridItem key={key}>
                   <Text fontSize="2xl" fontWeight="bold">
                     {capitalize(key)}
                   </Text>
                   <Text fontSize="2xl">{stats[key]}</Text>
-                </Box>
+                </GridItem>
               );
             })}
             <Box>
